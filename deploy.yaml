@@ -21,7 +21,7 @@ spec:
         app: jonas-service
     spec:
       containers:
-      - image: docker.io/jonasberlin/ci-demo:15
+      - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
         imagePullPolicy: Always
         name: jonas-service
         ports:
