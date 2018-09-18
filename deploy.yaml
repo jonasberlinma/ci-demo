@@ -4,7 +4,7 @@ metadata:
   name: jonas-service
   namespace: default
   labels:
-    app:jonas-service
+    app: jonas-service
 spec:
   replicas: 4
   selector:
