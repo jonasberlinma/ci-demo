@@ -22,6 +22,6 @@ public class DataGetter {
 	
 	@RequestMapping("/")
 	public String index(){
-		return ("This is Spring Boot");
+		return ("This is Spring Boot, Version 2");
 	}
 }
