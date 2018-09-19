@@ -8,6 +8,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh 'mvn test'
+				docker build
 			}
 		}
 	}
