@@ -1,10 +1,13 @@
 pipeline {
 	agent any
+	tools {
+		maven 'DefaultMaven'
+	}
 
 	stages {
 		stage('Build') {
 			steps {
-				echo 'Hi'
+				sh 'mvn test'
 			}
 		}
 	}
