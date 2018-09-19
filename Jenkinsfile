@@ -9,7 +9,7 @@ pipeline {
 			steps {
 				sh 'mvn test'
 				sh 'mvn package'
-				sh 'docker build'
+				sh 'docker build -t jonasberlin/ci-demo:${BUILD_NUMBER} --pull=true ${WORKSPACE}'
 			}
 		}
 	}
