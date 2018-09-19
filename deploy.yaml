@@ -7,6 +7,7 @@ metadata:
     app: jonas-service
 spec:
   replicas: 4
+  minReadySeconds: 30
   selector:
     matchLabels:
       app: jonas-service
