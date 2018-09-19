@@ -24,6 +24,10 @@ spec:
       containers:
       - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
         imagePullPolicy: Always
+        lifecycle:
+	  preStop:
+            exec:
+              command: ["/bin/bash", "-c", "sleep", "5"]
         name: jonas-service
         ports:
         - containerPort: 8080
