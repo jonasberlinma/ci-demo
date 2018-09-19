@@ -1,10 +1,10 @@
 pipeline {
-	def app
 	agent any
 	tools {
 		maven 'apache-maven-3.5.4'
 	}
-
+	node {
+	def app
 	stages {
 		stage('Build') {
 			steps {
@@ -14,5 +14,5 @@ pipeline {
 			}
 		}
 	}
-
+	}
 }
