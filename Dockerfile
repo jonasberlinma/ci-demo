@@ -1,7 +1,7 @@
-FROM node
+FROM openjdk
 MAINTAINER Jonas Berlin <jonas@theberlins.org>
-ADD src/main/java/org/theberlins/citest/ping.js /home/node/ping.js
+ADD target/ci-demo-0.0.1-SNAPSHOT.jar /tmp/ci-demo-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080
 
-ENTRYPOINT node /home/node/ping.js
+ENTRYPOINT java -jar /tmp/ci-demo-0.0.1-SNAPSHOT.jar

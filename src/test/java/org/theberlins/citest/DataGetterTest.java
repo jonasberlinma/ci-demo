@@ -1,4 +1,8 @@
+package org.theberlins.citest;
+
+
 import org.junit.jupiter.api.*;
+
 import org.theberlins.citest.DataGetter;
 
 @DisplayName("Data Getter Tester")
