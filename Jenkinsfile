@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent master
 	tools {
 		maven 'apache-maven-3.5.4'
 	}
