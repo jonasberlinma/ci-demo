@@ -22,6 +22,6 @@ public class DataGetter {
 	
 	@RequestMapping("/")
 	public String index(){
-		return ("SB 6 ");
+		return ("SB 7 ");
 	}
 }
