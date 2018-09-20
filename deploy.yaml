@@ -27,7 +27,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["/bin/sh", "-c", "sleep 10"]
+              command: ["bash", "-c", "sleep 10"]
         name: jonas-service
         ports:
         - containerPort: 8080
