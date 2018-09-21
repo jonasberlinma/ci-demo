@@ -22,6 +22,6 @@ public class DataGetter {
 	
 	@RequestMapping("/")
 	public String index(){
-		return ("13 ");
+		return ("14 ");
 	}
 }
