@@ -22,13 +22,13 @@ import org.theberlins.citest.DataGetter;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class DataGetterTest {
+public class DataGetterTest {
 	
 	@Autowired 
 	MockMvc mvc;
 
 	@Test
-	void testDataGetter() throws Exception{
+	public void testDataGetter() throws Exception{
 		DataGetter dg = new DataGetter();
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.ALL_VALUE))
 		.andExpect(status().isOk())
