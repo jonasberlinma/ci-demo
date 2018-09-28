@@ -9,7 +9,7 @@ public class DataGetter {
 	private String message = null;
 
 	public DataGetter() {
-		message = "Initial Message";
+		message = "21 ";
 	}
 
 	public String getMessage() {
@@ -22,6 +22,6 @@ public class DataGetter {
 	
 	@RequestMapping("/")
 	public String index(){
-		return ("21 ");
+		return (getMessage());
 	}
 }
