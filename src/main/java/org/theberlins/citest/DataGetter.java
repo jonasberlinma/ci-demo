@@ -9,7 +9,7 @@ public class DataGetter {
 	private String message = null;
 
 	public DataGetter() {
-		message = "23 ";
+		message = "24 ";
 	}
 
 	public String getMessage() {
