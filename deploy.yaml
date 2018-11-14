@@ -33,7 +33,7 @@ spec:
         - containerPort: 8080
         readinessProbe:
           httpGet:
-            path: /
+            path: /staticNumber
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
