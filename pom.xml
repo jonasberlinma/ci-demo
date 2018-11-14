@@ -80,6 +80,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/ai.h2o/h2o-genmodel -->
+		<dependency>
+			<groupId>ai.h2o</groupId>
+			<artifactId>h2o-genmodel</artifactId>
+			<version>3.22.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

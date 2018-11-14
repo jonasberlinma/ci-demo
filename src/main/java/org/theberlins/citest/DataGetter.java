@@ -20,7 +20,7 @@ public class DataGetter {
 		this.message = message;
 	}
 	
-	@RequestMapping("/")
+	@RequestMapping("/staticNumber")
 	public String index(){
 		return (getMessage());
 	}
