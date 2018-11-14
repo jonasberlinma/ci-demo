@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.json.JSONString;
+import org.json.simple.JSONValue;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +41,7 @@ public class ImageNumberRecognizer {
 		Iterator<Object> iterator = keys.iterator();
 		while(iterator.hasNext()){
 			Object key = iterator.next();
-			if(object.get(key) instanceof JSONString){
+			if(object.get(key) instanceof JSONValue){
 				row.put(keys.toString(), object.get(key).toString());
 			}
 		}
