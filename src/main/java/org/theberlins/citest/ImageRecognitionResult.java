@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ImageRecognitionResult {
 	   private String type;
 	   private String recognizedValue;
+	   
+	   public ImageRecognitionResult(String type, String recognizedValue){
+		   this.type = type;
+		   this.recognizedValue = recognizedValue;
+	   }
 
 	    public String getType() {
 	        return type;

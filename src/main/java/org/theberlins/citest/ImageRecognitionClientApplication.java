@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestClientException;
@@ -28,11 +29,11 @@ public class ImageRecognitionClientApplication {
 				String line = reader.readLine();
 
 				String[] entries = line.split(",");
-
+				JSONObject request = new JSONObject();
 				for (int i = 0; i < entries.length; i++) {
-					System.out.println(i + " " + entries[i]);
+					request.put("C"+ (i + 1), entries[i]);
 				}
-				ImageRecognitionResult res = restTemplate.getForObject(URL, ImageRecognitionResult.class);
+				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
 				log.info(res.toString());
 
 			}

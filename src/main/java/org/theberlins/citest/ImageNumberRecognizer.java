@@ -1,9 +1,15 @@
 package org.theberlins.citest;
 
 import java.io.IOException;
-import java.util.Vector;
+import java.util.Iterator;
+import java.util.Set;
 
+import org.json.JSONString;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import hex.genmodel.MojoModel;
@@ -15,24 +21,34 @@ import hex.genmodel.easy.prediction.MultinomialModelPrediction;
 
 public class ImageNumberRecognizer {
 
-	private  EasyPredictModelWrapper model = null;
-	private ImageNumberRecognizer() throws IOException{
+	private EasyPredictModelWrapper model = null;
+
+	private ImageNumberRecognizer() throws IOException {
 		String fileName = "deeplearning.zip";
 		model = new EasyPredictModelWrapper(MojoModel.load(fileName));
 	}
-	
-	@RequestMapping("/recognizeNumber")
-	public int recognize(Vector<Integer> pixels) throws Exception {
+
+	@RequestMapping(value = "/recognizeNumber", method = RequestMethod.POST)
+	public ImageRecognitionResult recognize(@RequestBody String request) throws Exception {
 
 		RowData row = new RowData();
-		
-		for(int i = 0 ; i < pixels.size() - 1; i++ )
-		{
-			row.put("C"+ (i + 1), pixels.elementAt(i).toString());
+
+		JSONParser parser = new JSONParser();
+
+		JSONObject object = (JSONObject) parser.parse(request);
+
+		Set<Object> keys = object.keySet();
+		Iterator<Object> iterator = keys.iterator();
+		while(iterator.hasNext()){
+			Object key = iterator.next();
+			if(object.get(key) instanceof JSONString){
+				row.put(keys.toString(), object.get(key).toString());
+			}
 		}
-		
+
 		MultinomialModelPrediction p = model.predictMultinomial(row);
+
 		
-		return Integer.parseInt(p.label);
+		return new ImageRecognitionResult("SUCCESS", p.label);
 	}
 }

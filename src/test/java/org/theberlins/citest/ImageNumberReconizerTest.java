@@ -23,8 +23,9 @@ public class ImageNumberReconizerTest {
 
 	@Test
 	public void testImageRecognizer() throws Exception {
-
-		mvc.perform(MockMvcRequestBuilders.get("/recognizeNumber").accept(MediaType.ALL_VALUE))
-				.andExpect(status().isOk()).andExpect(content().string(equalTo("5")));
+		String json = "{ \"Foo\": \"Bar\"}";
+		mvc.perform(MockMvcRequestBuilders.post("/recognizeNumber").contentType(MediaType.APPLICATION_JSON)
+				.content(json).accept(MediaType.ALL_VALUE)).andExpect(status().isOk())
+				.andExpect(content().string(equalTo("5")));
 	}
 }
