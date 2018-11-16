@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: jonas-service
+        app: image-recognizer
     spec:
       containers:
       - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
