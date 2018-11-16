@@ -29,9 +29,10 @@ public class ImageRecognitionClientApplication {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(dataFile));
 
+			int sampleNo = 0;
 			while (reader.ready()) {
 				String line = reader.readLine();
-
+				sampleNo++;
 				String[] entries = line.split(",");
 				JSONObject request = new JSONObject();
 
@@ -43,7 +44,7 @@ public class ImageRecognitionClientApplication {
 				Long startTime = System.currentTimeMillis();
 				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
 				Long endTime = System.currentTimeMillis();
-				log.info("Actual : " + actualLabel + "; Predicted : " + res.getRecognizedValue() + " in "
+				log.info("Sample=" + sampleNo + " Actual=" + actualLabel + " Predicted=" + res.getRecognizedValue() + " in "
 						+ (endTime - startTime) + " ms");
 			}
 			reader.close();
