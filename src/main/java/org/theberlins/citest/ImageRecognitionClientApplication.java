@@ -22,6 +22,10 @@ public class ImageRecognitionClientApplication {
 		dataFile = args[1];
 		RestTemplate restTemplate = new RestTemplate();
 
+		ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory
+				.getLogger(Logger.ROOT_LOGGER_NAME);
+		rootLogger.setLevel(ch.qos.logback.classic.Level.INFO);
+
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(dataFile));
 
@@ -36,8 +40,11 @@ public class ImageRecognitionClientApplication {
 				}
 				String actualLabel = entries[entries.length - 1];
 
+				Long startTime = System.currentTimeMillis();
 				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
-				log.info("Actual : " + actualLabel + "; Predicted : " + res.getRecognizedValue());
+				Long endTime = System.currentTimeMillis();
+				log.info("Actual : " + actualLabel + "; Predicted : " + res.getRecognizedValue() + " in "
+						+ (endTime - startTime) + " ms");
 			}
 			reader.close();
 
