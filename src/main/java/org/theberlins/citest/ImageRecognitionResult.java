@@ -30,7 +30,7 @@ public class ImageRecognitionResult {
 
 	    @Override
 	    public String toString() {
-	        return "Quote{" +
+	        return "ImageIdentity{" +
 	                "type='" + type + '\'' +
 	                ", recognizedValue='" + recognizedValue +
 	                '}';

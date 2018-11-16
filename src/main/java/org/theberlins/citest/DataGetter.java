@@ -21,7 +21,11 @@ public class DataGetter {
 	}
 	
 	@RequestMapping("/staticNumber")
-	public String index(){
+	public String staticNumber(){
 		return (getMessage());
+	}
+	@RequestMapping("/")
+	public String index(){
+		return ("Index{ type='SUCCESS' }");
 	}
 }
