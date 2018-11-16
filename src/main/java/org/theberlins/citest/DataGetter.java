@@ -19,13 +19,14 @@ public class DataGetter {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
+
 	@RequestMapping("/staticNumber")
-	public String staticNumber(){
+	public String staticNumber() {
 		return (getMessage());
 	}
+
 	@RequestMapping("/")
-	public String index(){
+	public String index() {
 		return ("Index{ type='SUCCESS' }");
 	}
 }
