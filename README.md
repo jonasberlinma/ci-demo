@@ -42,6 +42,9 @@ You can run the client in your favorite way with just two arguments:
 ```
 java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv
 ```
+If you need a copy of the test data it is available here:
+
+https://s3.amazonaws.com/h2o-public-test-data/bigdata/laptop/mnist/test.csv.gz
 
 Once you get it to run it should look something like this:
 
