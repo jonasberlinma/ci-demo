@@ -7,7 +7,7 @@ metadata:
     app: image-recognizer
 spec:
   replicas: 4
-  minReadySeconds: 10
+  minReadySeconds: 60
   selector:
     matchLabels:
       app: image-recognizer
@@ -35,6 +35,6 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 30
+          periodSeconds: 10
           successThreshold: 1

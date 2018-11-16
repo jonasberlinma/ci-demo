@@ -7,6 +7,9 @@ public class ImageRecognitionResult {
 	   private String type;
 	   private String recognizedValue;
 	   
+	   public ImageRecognitionResult(){
+		   
+	   }
 	   public ImageRecognitionResult(String type, String recognizedValue){
 		   this.type = type;
 		   this.recognizedValue = recognizedValue;
