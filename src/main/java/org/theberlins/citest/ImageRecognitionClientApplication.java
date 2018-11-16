@@ -30,12 +30,14 @@ public class ImageRecognitionClientApplication {
 
 				String[] entries = line.split(",");
 				JSONObject request = new JSONObject();
-				for (int i = 0; i < entries.length; i++) {
-					request.put("C"+ (i + 1), entries[i]);
-				}
-				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
-				log.info(res.toString());
 
+				for (int i = 0; i < entries.length; i++) {
+					request.put("C" + (i + 1), entries[i]);
+				}
+				String actualLabel = entries[entries.length - 1];
+
+				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
+				log.info("Actual : " + actualLabel + "; Predicted : " + res.getRecognizedValue());
 			}
 			reader.close();
 

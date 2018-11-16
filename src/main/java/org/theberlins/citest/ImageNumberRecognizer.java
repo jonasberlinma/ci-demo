@@ -39,16 +39,13 @@ public class ImageNumberRecognizer {
 
 		Set<Object> keys = object.keySet();
 		Iterator<Object> iterator = keys.iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			Object key = iterator.next();
-			if(object.get(key) instanceof JSONValue){
-				row.put(keys.toString(), object.get(key).toString());
-			}
+			row.put(key.toString(), object.get(key).toString());
 		}
 
 		MultinomialModelPrediction p = model.predictMultinomial(row);
 
-		
 		return new ImageRecognitionResult("SUCCESS", p.label);
 	}
 }
