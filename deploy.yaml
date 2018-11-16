@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: jonas-service
+  name: image-recognizer
   namespace: default
   labels:
-    app: jonas-service
+    app: image-recognizer
 spec:
   replicas: 4
   minReadySeconds: 10
   selector:
     matchLabels:
-      app: jonas-service
+      app: image-recognizer
     strategy:
       rollingUpdate:
         maxSurge: 25%
@@ -33,7 +33,7 @@ spec:
         - containerPort: 8080
         readinessProbe:
           httpGet:
-            path: /staticNumber
+            path: /
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5
