@@ -9,8 +9,9 @@ The basic idea was to see if I can create a CI/CD pipeline that allows me to dep
 So, the point of the exercise is more about studying the build and deployment process rather than the deployed service or machine learning.
 
 ## Prequisites to run it:
+  * A Git repository that you can mess around with. You may just want to clone this one
   * A running docker machine
-  * A Jenkins instance. You can use the image "docker pull jonasberlin/my-jenkins"
+  * A Jenkins instance. You can use the image "docker pull jonasberlin/my-jenkins" or yor favorite one
   * A functioning Kubernetes cluster (either minikube or your favorite)
   * An image repository for docker images. You can use Docker Hub or a private one
 
@@ -21,8 +22,32 @@ So, the point of the exercise is more about studying the build and deployment pr
   * _pom.xml_ this file contains the maven build instructions for the Spring Boot application
   * _deeplearning.zip_ this file contains an H2O Mojo deplyment file which was created off the H2O deep learning example using the MNIST dataset. The basic idea of the model is to recognize hand written images of the number 0 through 9
   
-## The application
-The application exposes a web services which:
-  * On startup 
-  * Parses the input JSON
-  * Creates a ROW object
+## The server application
+The server application which gets deployed on the Kubernetes cluster exposes a RESTful web services which on startup loads the _deeplearning.zip_ Mojo model file and then waits for requests. Once a request is received it:
+  * Parses the incoming JSON
+  * Creates an H2O ROWData object
+  * Scores the row through the model
+  * Returns a JSON object representing the result
+  
+## The client application
+A separate client application is available which can be used to test either your local copy of the application or one deployed on a Kubernetes cluster. This application simply:
+  * Reads a test data file
+  * Creates a JSON object for each record
+  * Calls the scoring web service (server application)
+  * Receives the result
+  * Writes out the result
+
+## The build process
+The Jenkins build process does the following:
+  * Waits for a change to happen to the configured repository (see configuration below)
+  * Pulls down the _Jenkinsfile_ file from the repository which contains the following build process steps
+  * Checks out the code from the Git repository
+  * Uses Maven to build the Java Spring Boot application that runs the service
+  * Uses the configured Docker machine and the _Dockerfile_ instructions to build a new docker image containing the application and the _deeplearning.zip_ Mojo model file
+  * Uploads the new docker image to Docker Hub (you can use your favorite repository)
+  * Creates a new deployment configuration file from the template _deploy.yaml_ and uploads it to the configured Kubernetes cluster
+  
+## Added configuration
+To get it all to work you have to set up a few things in Jenkins.
+
+### GitHub connection
