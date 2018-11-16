@@ -1,10 +1,12 @@
-# Simple code example to test github, Jenkins, dockerhub, Kubernetes, Spring Boot, and H2O.
+# Simple code example to test GitHub, Jenkins, Docker, Docker Hub, Kubernetes, Spring Boot, and H2O.
 The basic idea was to see if I can create a CI/CD pipeline that allows me to deploy a scoring model in a micro service with the following requirements:
   * Always on, even through new code deployments
   * Resitent to failures during deployments and other possible issues
   * Arbitrarily scalable allowing auto scaling with increased load
   * Fast enough to allow for real-time on the fly scoring
   * Integrated testing making sure that the model and the code passes all tests before it is deployed
+
+So, the point of the exercise is more about studying the build and deployment process rather than the deployed service or machine learning.
 
 ## Prequisites to run it:
   * A running docker machine
@@ -19,4 +21,8 @@ The basic idea was to see if I can create a CI/CD pipeline that allows me to dep
   * _pom.xml_ this file contains the maven build instructions for the Spring Boot application
   * _deeplearning.zip_ this file contains an H2O Mojo deplyment file which was created off the H2O deep learning example using the MNIST dataset. The basic idea of the model is to recognize hand written images of the number 0 through 9
   
-## This is what the application does
+## The application
+The application exposes a web services which:
+  * On startup 
+  * Parses the input JSON
+  * Creates a ROW object
