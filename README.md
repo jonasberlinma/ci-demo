@@ -50,4 +50,10 @@ The Jenkins build process does the following:
 ## Added configuration
 To get it all to work you have to set up a few things in Jenkins.
 
-### GitHub connection
+### GitHub pipeline
+Create a new Jenkins pipeline and set up the connection to the Git repository. To do this you also have to setup up credentials to connect to your repository. My setup looks like this: 
+![Alt text](https://github.com/jonasberlinma/ci-demo/blob/master/images/Pipeline.png)
+
+### Configure Kubernetes credentials
+The Kubernetes configuration is a little bit more tricky as you have to make sure the Jenkins build machine has access to the Kubernetes certs. My setup looks like this:
+![Alt text](https://github.com/jonasberlinma/ci-demo/blob/master/images/KubeCreds.png)
