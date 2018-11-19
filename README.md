@@ -36,6 +36,32 @@ A separate client application is available which can be used to test either your
   * Calls the scoring web service (server application)
   * Receives the result
   * Writes out the result
+  
+You can run the client in your favorite way with just two arguments:
+
+```
+java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv
+```
+If you need a copy of the test data it is available here:
+
+https://s3.amazonaws.com/h2o-public-test-data/bigdata/laptop/mnist/test.csv.gz
+
+Once you get it to run it should look something like this:
+
+```
+15:11:53.001 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9949 Actual=0 Predicted=0 in 5 ms
+15:11:53.004 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9950 Actual=2 Predicted=2 in 3 ms
+15:11:53.007 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9951 Actual=8 Predicted=8 in 3 ms
+15:11:53.011 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9952 Actual=4 Predicted=4 in 4 ms
+15:11:53.016 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9953 Actual=3 Predicted=3 in 5 ms
+15:11:53.019 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9954 Actual=3 Predicted=3 in 3 ms
+15:11:53.023 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9955 Actual=7 Predicted=7 in 4 ms
+15:11:53.027 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9956 Actual=1 Predicted=1 in 4 ms
+15:11:53.032 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9957 Actual=1 Predicted=1 in 4 ms
+15:11:53.036 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9958 Actual=0 Predicted=0 in 3 ms
+15:11:53.041 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9959 Actual=7 Predicted=7 in 4 ms
+15:11:53.045 [main] INFO org.theberlins.citest.ImageRecognitionClientApplication - Sample=9960 Actual=2 Predicted=2 in 4 ms
+```
 
 ## The build process
 The Jenkins build process does the following:
@@ -50,4 +76,10 @@ The Jenkins build process does the following:
 ## Added configuration
 To get it all to work you have to set up a few things in Jenkins.
 
-### GitHub connection
+### GitHub pipeline
+Create a new Jenkins pipeline and set up the connection to the Git repository. To do this you also have to setup up credentials to connect to your repository. My setup looks like this: 
+![Alt text](https://github.com/jonasberlinma/ci-demo/blob/master/images/Pipeline.png)
+
+### Configure Kubernetes credentials
+The Kubernetes configuration is a little bit more tricky as you have to make sure the Jenkins build machine has access to the Kubernetes certs. My setup looks like this:
+![Alt text](https://github.com/jonasberlinma/ci-demo/blob/master/images/KubeCreds.png)
