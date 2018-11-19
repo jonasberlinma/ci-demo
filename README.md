@@ -37,12 +37,12 @@ A separate client application is available which can be used to test either your
   * Receives the result
   * Writes out the result
   
-You can run the client in your favorite way with just two arguments:
+You can run the client in your favorite way with three arguments:
 
 ```
-java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv
+java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv 2
 ```
-If you need a copy of the test data it is available here:
+The third argument is the number of threads. If you need a copy of the test data it is available here:
 
 https://s3.amazonaws.com/h2o-public-test-data/bigdata/laptop/mnist/test.csv.gz
 
