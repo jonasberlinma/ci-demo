@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.json.simple.JSONValue;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +36,7 @@ public class ImageNumberRecognizer {
 
 		JSONObject object = (JSONObject) parser.parse(request);
 
+		// JSONObject doesn't support type parameters
 		Set<Object> keys = object.keySet();
 		Iterator<Object> iterator = keys.iterator();
 		while (iterator.hasNext()) {
