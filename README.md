@@ -40,15 +40,16 @@ A separate client application is available which can be used to test either your
 You can run the client in your favorite way with the following arguments:
 
 		-url <url> 				the url to hit
-		-data <file path> 			the path to get load test data
+		-data <file path> 			the path used to load test data
 		-delay <number>				the number of milli seconds to delay each call
 		-threads <number>			the number of threads to use to hit the url
-		-showGraphis [none | error | all]	the level of output for image rendering
+		-showGraphics [none | error | all]	the level of output for image rendering
+
+For example:
 
 ```
-java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv 2
+java org.theberlins.citest.ImageRecognitionClientApplication -url http://192.168.99.101:32700 -data test.csv -threads 2 -delay 100 -showGraphics error
 ```
-The third argument is the number of concurrent threads making calls. Setting the number of threads to 1 will make the application show a grapical representation of each misclassified image.
 
 If you need a copy of the test data it is available here:
 
