@@ -37,7 +37,13 @@ A separate client application is available which can be used to test either your
   * Receives the result
   * Writes out the result
   
-You can run the client in your favorite way with three arguments:
+You can run the client in your favorite way with the following arguments:
+
+		-url <url> 				the url to hit
+		-data <file path> 			the path to get load test data
+		-delay <number>				the number of milli seconds to delay each call
+		-threads <number>			the number of threads to use to hit the url
+		-showGraphis [none | error | all]	the level of output for image rendering
 
 ```
 java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv 2

@@ -15,15 +15,17 @@ public class ImageRecognitionCaller extends Thread {
 	private String dataFile;
 	private String URL;
 	private Logger log;
-	private boolean showGraphics;
+	private String showGraphics;
+	private int delay;
 	private ImageRecognitionRenderer renderer;
 
-	public ImageRecognitionCaller(String URL, String dataFile, Logger log, boolean showGraphics) {
+	public ImageRecognitionCaller(String URL, String dataFile, Logger log, String showGraphics, int delay) {
 		this.URL = URL;
 		this.dataFile = dataFile;
 		this.log = log;
 		this.showGraphics = showGraphics;
-		if (showGraphics) {
+		this.delay = delay;
+		if (showGraphics.compareTo("none") != 0) {
 			renderer = new ImageRecognitionRenderer();
 		}
 	}
@@ -38,7 +40,12 @@ public class ImageRecognitionCaller extends Thread {
 
 			int sampleNo = 0;
 			while (reader.ready()) {
-
+				try {
+					Thread.sleep(delay);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				String line = reader.readLine();
 				sampleNo++;
 				String[] entries = line.split(",");
@@ -54,14 +61,18 @@ public class ImageRecognitionCaller extends Thread {
 				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
 				Long endTime = System.currentTimeMillis();
 				String errorMarker = "";
+				if (showGraphics.compareTo("all") == 0) {
+					renderer.update(actualLabel, res.getPredictedValue(), res.getProbability(), entries);
+				}
 				if (actualLabel.compareTo(res.getPredictedValue()) != 0) {
 					errorMarker = "<<<<<<<<<<<<";
-					if (showGraphics) {
+					if (showGraphics.compareTo("error") == 0) {
 						renderer.update(actualLabel, res.getPredictedValue(), res.getProbability(), entries);
 					}
 				}
 				log.info("Sample=" + sampleNo + " Actual=" + actualLabel + " Predicted=" + res.getPredictedValue()
-						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms" + errorMarker);
+						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms"
+						+ errorMarker);
 			}
 			reader.close();
 
