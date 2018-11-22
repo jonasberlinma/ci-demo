@@ -31,19 +31,20 @@ public class ImageRecognitionRenderer {
 
 			@Override
 			public void paint(Graphics g) {
-				g.setColor(new Color(0,0,0));
+				g.setColor(new Color(0, 0, 0));
 				g.fillRect(10, 80, 280, 280);
 				if (errorImage != null) {
 					jta.setText("Actual=" + actual + "\nPredicted=" + predicted + "\nProbability="
 							+ Math.round(probability * 1000) / ((double) 1000));
-					g.setColor(new Color(0,0,0));
+					g.setColor(new Color(0, 0, 0));
 					g.drawRect(10, 80, 280, 280);
 					for (int i = 0; i < 28; i++) {
 						for (int j = 0; j < 28; j++) {
 							int point = j * 28 + i;
 							if (new Integer(errorImage[point]).intValue() > 0) {
 								int color = new Integer(errorImage[point]).intValue();
-								g.setColor(new Color(color, color, color));
+								g.setColor(new Color(color, actual.compareTo(predicted) != 0 ? 0 : color,
+										actual.compareTo(predicted) != 0 ? 0 : color));
 								g.fillRect(i * 10 + 10, j * 10 + 80, 10, 10);
 							}
 						}
@@ -53,7 +54,7 @@ public class ImageRecognitionRenderer {
 
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(300, 380);
+				return new Dimension(300, 370);
 			}
 		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
