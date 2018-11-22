@@ -42,7 +42,9 @@ You can run the client in your favorite way with three arguments:
 ```
 java org.theberlins.citest.ImageRecognitionClientApplication http://192.168.99.101:32700 test.csv 2
 ```
-The third argument is the number of threads. If you need a copy of the test data it is available here:
+The third argument is the number of concurrent threads making calls. Setting the number of threads to 1 will make the application show a grapical representation of each misclassified image.
+
+If you need a copy of the test data it is available here:
 
 https://s3.amazonaws.com/h2o-public-test-data/bigdata/laptop/mnist/test.csv.gz
 
