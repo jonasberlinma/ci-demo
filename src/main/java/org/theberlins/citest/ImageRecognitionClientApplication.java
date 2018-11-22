@@ -23,7 +23,7 @@ public class ImageRecognitionClientApplication {
 		
 		Vector<ImageRecognitionCaller> callers = new Vector<ImageRecognitionCaller>();
 		for(long iThread = 0; iThread < nThreads; iThread++){
-			ImageRecognitionCaller irc = new ImageRecognitionCaller(URL, dataFile, log);
+			ImageRecognitionCaller irc = new ImageRecognitionCaller(URL, dataFile, log, nThreads == 1);
 			callers.add(irc);
 			irc.start();
 		}
