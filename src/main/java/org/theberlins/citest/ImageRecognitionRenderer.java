@@ -16,6 +16,7 @@ public class ImageRecognitionRenderer {
 	private String[] errorImage;
 	private String actual;
 	private String predicted;
+	private double probability;
 	
 	ImageRecognitionRenderer(){
 		frame = new JFrame("Image " + ImageRecognitionCaller.currentThread().getName());
@@ -31,7 +32,7 @@ public class ImageRecognitionRenderer {
 			@Override
 			public void paint(Graphics g) {
 				if (errorImage != null) {
-					jta.setText("Actual=" + actual + "\nPredicted=" + predicted);
+					jta.setText("Actual=" + actual + "\nPredicted=" + predicted + "\nProbability=" + probability);
 					for (int i = 0; i < 28; i++) {
 						for (int j = 0; j < 28; j++) {
 							int point = j * 28 + i;
@@ -55,9 +56,10 @@ public class ImageRecognitionRenderer {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	public void update(String actual, String predicted, String[] image){
+	public void update(String actual, String predicted, double probability, String[] image){
 		this.actual = actual;
 		this.predicted = predicted;
+		this.probability = probability;
 		this.errorImage = image;
 		frame.update(frame.getGraphics());
 	}

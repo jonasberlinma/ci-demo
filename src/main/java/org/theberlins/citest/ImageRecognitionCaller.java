@@ -57,11 +57,11 @@ public class ImageRecognitionCaller extends Thread {
 				if (actualLabel.compareTo(res.getPredictedValue()) != 0) {
 					errorMarker = "<<<<<<<<<<<<";
 					if (showGraphics) {
-						renderer.update(actualLabel, res.getPredictedValue(), entries);
+						renderer.update(actualLabel, res.getPredictedValue(), res.getProbability(), entries);
 					}
 				}
 				log.info("Sample=" + sampleNo + " Actual=" + actualLabel + " Predicted=" + res.getPredictedValue()
-						+ " in " + (endTime - startTime) + " ms" + errorMarker);
+						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms" + errorMarker);
 			}
 			reader.close();
 
