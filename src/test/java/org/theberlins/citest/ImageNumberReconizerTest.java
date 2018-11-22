@@ -26,6 +26,6 @@ public class ImageNumberReconizerTest {
 		String json = "{ \"Foo\": \"Bar\"}";
 		mvc.perform(MockMvcRequestBuilders.post("/recognizeNumber").contentType(MediaType.APPLICATION_JSON)
 				.content(json).accept(MediaType.ALL_VALUE)).andExpect(status().isOk())
-				.andExpect(content().string(equalTo("{\"type\":\"SUCCESS\",\"predictedValue\":\"5\"}")));
+				.andExpect(content().string(equalTo("{\"type\":\"SUCCESS\",\"predictedValue\":\"5\",\"probability\":0.23464554340534508}")));
 	}
 }
