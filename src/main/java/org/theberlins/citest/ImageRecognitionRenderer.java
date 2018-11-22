@@ -17,29 +17,30 @@ public class ImageRecognitionRenderer {
 	private String actual;
 	private String predicted;
 	private double probability;
-	
-	ImageRecognitionRenderer(){
+
+	ImageRecognitionRenderer() {
 		frame = new JFrame("Image " + ImageRecognitionCaller.currentThread().getName());
 		jta = new JTextArea("<no data>");
 		jta.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		jta.setBounds(10, 10, 100, 40);
+		jta.setBounds(10, 10, 120, 60);
 		frame.add(jta);
 		frame.setSize(300, 300);
 		class MyPanel extends JPanel {
-			
+
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void paint(Graphics g) {
 				if (errorImage != null) {
-					jta.setText("Actual=" + actual + "\nPredicted=" + predicted + "\nProbability=" + probability);
+					jta.setText("Actual=" + actual + "\nPredicted=" + predicted + "\nProbability="
+							+ Math.round(probability * 1000) / ((double) 1000));
 					for (int i = 0; i < 28; i++) {
 						for (int j = 0; j < 28; j++) {
 							int point = j * 28 + i;
 							if (new Integer(errorImage[point]).intValue() > 0) {
 								int color = new Integer(errorImage[point]).intValue();
 								g.setColor(new Color(color, color, color));
-								g.fillRect(i * 10 + 10, j * 10 + 10, 10, 10);
+								g.fillRect(i * 10 + 10, j * 10 + 20, 10, 10);
 							}
 						}
 					}
@@ -48,7 +49,7 @@ public class ImageRecognitionRenderer {
 
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(300, 300);
+				return new Dimension(320, 300);
 			}
 		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +57,8 @@ public class ImageRecognitionRenderer {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	public void update(String actual, String predicted, double probability, String[] image){
+
+	public void update(String actual, String predicted, double probability, String[] image) {
 		this.actual = actual;
 		this.predicted = predicted;
 		this.probability = probability;
