@@ -46,6 +46,6 @@ public class ImageNumberRecognizer {
 
 		MultinomialModelPrediction p = model.predictMultinomial(row);
 
-		return new ImageRecognitionResult("SUCCESS", p.label);
+		return new ImageRecognitionResult("SUCCESS", p.label, p.classProbabilities[p.labelIndex]);
 	}
 }
