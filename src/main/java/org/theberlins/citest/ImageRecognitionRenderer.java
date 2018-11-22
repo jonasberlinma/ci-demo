@@ -11,6 +11,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
 public class ImageRecognitionRenderer {
+	private static int blockSize = 5;
+	private static int gridSize = 28;
 	private JFrame frame;
 	private JTextArea jta;
 	private String[] errorImage;
@@ -32,20 +34,20 @@ public class ImageRecognitionRenderer {
 			@Override
 			public void paint(Graphics g) {
 				g.setColor(new Color(0, 0, 0));
-				g.fillRect(10, 80, 280, 280);
+				g.fillRect(10, 80, gridSize * blockSize, gridSize * blockSize);
 				if (errorImage != null) {
 					jta.setText("Actual=" + actual + "\nPredicted=" + predicted + "\nProbability="
 							+ Math.round(probability * 1000) / ((double) 1000));
 					g.setColor(new Color(0, 0, 0));
-					g.drawRect(10, 80, 280, 280);
-					for (int i = 0; i < 28; i++) {
-						for (int j = 0; j < 28; j++) {
-							int point = j * 28 + i;
+					g.drawRect(10, 80, gridSize * blockSize, gridSize * blockSize);
+					for (int i = 0; i < gridSize; i++) {
+						for (int j = 0; j < gridSize; j++) {
+							int point = j * gridSize + i;
 							if (new Integer(errorImage[point]).intValue() > 0) {
 								int color = new Integer(errorImage[point]).intValue();
 								g.setColor(new Color(color, actual.compareTo(predicted) != 0 ? 0 : color,
 										actual.compareTo(predicted) != 0 ? 0 : color));
-								g.fillRect(i * 10 + 10, j * 10 + 80, 10, 10);
+								g.fillRect(i * blockSize + 10, j * blockSize + 80, blockSize, blockSize);
 							}
 						}
 					}
@@ -54,7 +56,7 @@ public class ImageRecognitionRenderer {
 
 			@Override
 			public Dimension getPreferredSize() {
-				return new Dimension(300, 370);
+				return new Dimension(gridSize * blockSize + 20, gridSize * blockSize + 90);
 			}
 		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
