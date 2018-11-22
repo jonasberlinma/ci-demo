@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ImageRecognitionResult {
 	   private String type;
-	   private String recognizedValue;
+	   private String predictedValue;
 	   
 	   public ImageRecognitionResult(){
 		   
 	   }
-	   public ImageRecognitionResult(String type, String recognizedValue){
+	   public ImageRecognitionResult(String type, String predictedValue){
 		   this.type = type;
-		   this.recognizedValue = recognizedValue;
+		   this.predictedValue = predictedValue;
 	   }
 
 	    public String getType() {
@@ -23,19 +23,19 @@ public class ImageRecognitionResult {
 	        this.type = type;
 	    }
 
-	    public String getRecognizedValue() {
-	        return recognizedValue;
+	    public String getPredictedValue() {
+	        return predictedValue;
 	    }
 
-	    public void setRecognizedValue(String recognizedValue) {
-	        this.recognizedValue = recognizedValue;
+	    public void setPredictedValue(String predictedValue) {
+	        this.predictedValue = predictedValue;
 	    }
 
 	    @Override
 	    public String toString() {
 	        return "ImageIdentity{" +
 	                "type='" + type + '\'' +
-	                ", recognizedValue='" + recognizedValue +
+	                ", predictedValue='" + predictedValue +
 	                '}';
 	    }
 }

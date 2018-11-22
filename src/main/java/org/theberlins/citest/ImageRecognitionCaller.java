@@ -54,13 +54,13 @@ public class ImageRecognitionCaller extends Thread {
 				ImageRecognitionResult res = restTemplate.postForObject(URL, request, ImageRecognitionResult.class);
 				Long endTime = System.currentTimeMillis();
 				String errorMarker = "";
-				if (actualLabel.compareTo(res.getRecognizedValue()) != 0) {
+				if (actualLabel.compareTo(res.getPredictedValue()) != 0) {
 					errorMarker = "<<<<<<<<<<<<";
 					if (showGraphics) {
-						renderer.update(actualLabel, res.getRecognizedValue(), entries);
+						renderer.update(actualLabel, res.getPredictedValue(), entries);
 					}
 				}
-				log.info("Sample=" + sampleNo + " Actual=" + actualLabel + " Predicted=" + res.getRecognizedValue()
+				log.info("Sample=" + sampleNo + " Actual=" + actualLabel + " Predicted=" + res.getPredictedValue()
 						+ " in " + (endTime - startTime) + " ms" + errorMarker);
 			}
 			reader.close();
