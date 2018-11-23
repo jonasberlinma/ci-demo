@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,7 @@ public class ImageNumberRecognizer {
 		model = new EasyPredictModelWrapper(MojoModel.load(fileName));
 	}
 
-	@RequestMapping(value = "/recognizeNumber", method = RequestMethod.POST)
+	@RequestMapping(value = "/recognizeNumber", method = RequestMethod.POST, produces = "application/json")
 	public ImageRecognitionResult recognize(@RequestBody String request) throws Exception {
 
 		RowData row = new RowData();
