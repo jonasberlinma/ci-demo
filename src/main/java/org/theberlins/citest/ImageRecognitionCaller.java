@@ -36,21 +36,25 @@ public class ImageRecognitionCaller extends Thread {
 		RestTemplate restTemplate = new RestTemplate();
 
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(dataFile));
 
+			ImageCache.setFileName(dataFile);
+			ImageCache imageCache = ImageCache.getInstance();
+			
 			int sampleNo = 0;
-			while (reader.ready()) {
+			while (true) {
 				try {
 					Thread.sleep(delay);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				String line = reader.readLine();
 				sampleNo++;
-				String[] entries = line.split(",");
+				
+
 				JSONObject request = new JSONObject();
 
+				String[] entries = imageCache.getRandomEntry();
+				
 				for (int i = 0; i < entries.length; i++) {
 					// JSONObject doesn't support type parameters :(
 					request.put("C" + (i + 1), entries[i]);
@@ -74,7 +78,6 @@ public class ImageRecognitionCaller extends Thread {
 						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms"
 						+ errorMarker);
 			}
-			reader.close();
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
