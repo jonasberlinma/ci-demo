@@ -1,0 +1,30 @@
+{
+  "kind": "Ingress",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "image-recognition-ingress",
+    "namespace": "default",
+    "annotations": {
+      "nginx.ingress.kubernetes.io/rewrite-target": "/",
+      "nginx.ingress.kubernetes.io/ssl-redirect": "false" # <-- Remove for real implementations
+    }
+  },
+  "spec": {
+    "rules": [
+      {
+        "host": "theberlins.local", # <-- Change to your favourite local domain
+        "http": {
+          "paths": [
+            {
+              "backend": {
+                "serviceName": "image-recognizer",
+                "servicePort": 8080
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
