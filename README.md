@@ -85,7 +85,8 @@ The Jenkins build process does the following:
 ## Setting up a Kubernetes Ingress
 If you want to set up a Kubernetes ingress the ingress.yaml file is available as an example. Remember to install the NGINX ingress controll
 er:
-```minikube addons enable ingress
+```
+minikube addons enable ingress
 ```
   
 ## Added configuration
