@@ -24,7 +24,7 @@ public class ImageRecognitionRenderer {
 		frame = new JFrame("Image " + ImageRecognitionCaller.currentThread().getName());
 		jta = new JTextArea("<no data>");
 		jta.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		jta.setBounds(10, 10, 120, 60);
+		jta.setBounds(10, 10, 140, 60);
 		frame.add(jta);
 		frame.setSize(300, 300);
 		class MyPanel extends JPanel {
