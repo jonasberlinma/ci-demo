@@ -81,6 +81,12 @@ The Jenkins build process does the following:
   * Uses the configured Docker machine and the _Dockerfile_ instructions to build a new docker image containing the application and the _deeplearning.zip_ Mojo model file
   * Uploads the new docker image to Docker Hub (you can use your favorite repository)
   * Creates a new deployment configuration file from the template _deploy.yaml_ and uploads it to the configured Kubernetes cluster
+
+## Setting up a Kubernetes Ingress
+If you want to set up a Kubernetes ingress the ingress.yaml file is available as an example. Remember to install the NGINX ingress controll
+er:
+```minikube addons enable ingress
+```
   
 ## Added configuration
 To get it all to work you have to set up a few things in Jenkins.
