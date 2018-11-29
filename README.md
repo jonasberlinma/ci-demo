@@ -88,7 +88,9 @@ er:
 ```
 minikube addons enable ingress
 ```
-  
+## Running the docker image on Amazon ECS
+Instead of launching the docker image on your local Kubernetes cluster as described above, it can also be run directly on Amazon ECS (Elastic Container Service). The easiest way to run it is to use the getting started wizard and specify the repo location "docker.io/jonasberlin/ci-demo:<version>". Just use the defaults and don't specify a load balancer. If you do you have to start understanding VPCs, security groups, health monitors, etc. etc.
+
 ## Added configuration
 To get it all to work you have to set up a few things in Jenkins.
 
