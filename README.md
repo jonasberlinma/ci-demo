@@ -82,6 +82,13 @@ The Jenkins build process does the following:
   * Uploads the new docker image to Docker Hub (you can use your favorite repository)
   * Creates a new deployment configuration file from the template _deploy.yaml_ and uploads it to the configured Kubernetes cluster
 
+## You have to add the Kubernetes service manuall
+The only thing you should have to add manually is the service. To do this use:
+```
+kubectl expose image-recognizer
+```
+after the first build (which will create the deployment).
+
 ## Setting up a Kubernetes Ingress
 If you want to set up a Kubernetes ingress the ingress.yaml file is available as an example. Remember to install the NGINX ingress controll
 er:
