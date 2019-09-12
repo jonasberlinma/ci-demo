@@ -14,6 +14,7 @@ public class ImageRecognitionClientApplication {
 	private static String dataFile;
 	private static int nThreads = 1;
 	private static int delay = 0;
+	private static int errorDelay = 0;
 	private static String showGraphics = "none";
 
 	public static void main(String args[]) {
@@ -29,6 +30,9 @@ public class ImageRecognitionClientApplication {
 				break;
 			case "-delay":
 				delay = new Integer(argi.next()).intValue();
+				break;
+			case "-errorDelay":
+				errorDelay = new Integer(argi.next()).intValue();
 				break;
 			case "-threads":
 				nThreads = new Integer(argi.next()).intValue();
@@ -53,7 +57,6 @@ public class ImageRecognitionClientApplication {
 			}
 
 		}
-
 		ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory
 				.getLogger(Logger.ROOT_LOGGER_NAME);
 
@@ -61,7 +64,7 @@ public class ImageRecognitionClientApplication {
 
 		Vector<ImageRecognitionCaller> callers = new Vector<ImageRecognitionCaller>();
 		for (long iThread = 0; iThread < nThreads; iThread++) {
-			ImageRecognitionCaller irc = new ImageRecognitionCaller(URL, dataFile, log, showGraphics, delay);
+			ImageRecognitionCaller irc = new ImageRecognitionCaller(URL, dataFile, log, showGraphics, delay, errorDelay);
 			callers.add(irc);
 			irc.start();
 		}

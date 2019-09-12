@@ -15,14 +15,17 @@ public class ImageRecognitionCaller extends Thread {
 	private Logger log;
 	private String showGraphics;
 	private int delay;
+	private int errorDelay;
 	private ImageRecognitionRenderer renderer;
 
-	public ImageRecognitionCaller(String URL, String dataFile, Logger log, String showGraphics, int delay) {
+	public ImageRecognitionCaller(String URL, String dataFile, Logger log, String showGraphics, int delay,
+			int errorDelay) {
 		this.URL = URL;
 		this.dataFile = dataFile;
 		this.log = log;
 		this.showGraphics = showGraphics;
 		this.delay = delay;
+		this.errorDelay = errorDelay;
 		if (showGraphics.compareTo("none") != 0) {
 			renderer = new ImageRecognitionRenderer();
 		}
@@ -37,22 +40,18 @@ public class ImageRecognitionCaller extends Thread {
 
 			ImageCache.setFileName(dataFile);
 			ImageCache imageCache = ImageCache.getInstance();
-			
+
 			int sampleNo = 0;
 			while (true) {
-				try {
-					Thread.sleep(delay);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+				Thread.sleep(delay);
+
 				sampleNo++;
-				
 
 				JSONObject request = new JSONObject();
 
 				String[] entries = imageCache.getRandomEntry();
-				
+
 				for (int i = 0; i < entries.length; i++) {
 					// JSONObject doesn't support type parameters :(
 					request.put("C" + (i + 1), entries[i]);
@@ -65,6 +64,10 @@ public class ImageRecognitionCaller extends Thread {
 				String errorMarker = "";
 				if (showGraphics.compareTo("all") == 0) {
 					renderer.update(actualLabel, res.getPredictedValue(), res.getProbability(), entries);
+					if(actualLabel.compareTo(res.getPredictedValue()) != 0)
+					{
+						Thread.sleep(errorDelay);
+					}
 				}
 				if (actualLabel.compareTo(res.getPredictedValue()) != 0) {
 					errorMarker = "<<<<<<<<<<<<";
@@ -84,6 +87,9 @@ public class ImageRecognitionCaller extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
