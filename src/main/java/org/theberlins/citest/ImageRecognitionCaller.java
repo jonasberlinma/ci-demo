@@ -79,7 +79,6 @@ public class ImageRecognitionCaller extends Thread {
 						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms"
 						+ errorMarker);
 			}
-
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

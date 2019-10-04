@@ -4,13 +4,13 @@ metadata:
   name: image-recognizer-deployment
   namespace: default
   labels:
-    app: image-recognizer
+    app: image-recognizer-deployment
 spec:
   replicas: 4
   minReadySeconds: 60
   selector:
     matchLabels:
-      app: image-recognizer
+      app: image-recognizer-deployment
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: image-recognizer
+        app: image-recognizer-deployment
     spec:
       containers:
       - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
@@ -28,7 +28,7 @@ spec:
           preStop:
             exec:
               command: ["bash", "-c", "sleep 10"]
-        name: image-recognizer-service
+        name: image-recognizer-deployment
         ports:
         - containerPort: 8080
         readinessProbe:
