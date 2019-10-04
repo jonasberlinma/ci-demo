@@ -6,18 +6,18 @@
     "namespace": "default",
     "annotations": {
       "nginx.ingress.kubernetes.io/rewrite-target": "/",
-      "nginx.ingress.kubernetes.io/ssl-redirect": "false" # <-- Remove for real implementations
+      "nginx.ingress.kubernetes.io/ssl-redirect": "false"
     }
   },
   "spec": {
     "rules": [
       {
-        "host": "theberlins.local", # <-- Change to your favourite local domain
+        "host": "theberlins.local",
         "http": {
           "paths": [
             {
               "backend": {
-                "serviceName": "image-recognizer",
+                "serviceName": "image-recognizer-deployment",
                 "servicePort": 8080
               }
             }

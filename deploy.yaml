@@ -1,10 +1,10 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: image-recognizer-deployment
   namespace: default
   labels:
-    app: image-recognizer-deployment
+    app: image-recognizer
 spec:
   replicas: 4
   minReadySeconds: 60
