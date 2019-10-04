@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: image-recognizer
+  name: image-recognizer-deployment
   namespace: default
   labels:
     app: image-recognizer
@@ -28,7 +28,7 @@ spec:
           preStop:
             exec:
               command: ["bash", "-c", "sleep 10"]
-        name: jonas-service
+        name: image-recognizer-service
         ports:
         - containerPort: 8080
         readinessProbe:
