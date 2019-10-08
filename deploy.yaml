@@ -6,15 +6,15 @@ metadata:
   labels:
     app: image-recognizer
 spec:
-  replicas: 4
+  replicas: 2
   minReadySeconds: 60
   selector:
     matchLabels:
       app: image-recognizer-deployment
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 50%
+      maxUnavailable: 50%
     type: RollingUpdate
   template:
     metadata:
@@ -22,8 +22,8 @@ spec:
         app: image-recognizer-deployment
     spec:
       containers:
-      - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
-        imagePullPolicy: Always
+      - image: docker.io/jonasberlin/ci-demo:131
+        imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:
             exec:
@@ -38,3 +38,4 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
           successThreshold: 1
+
