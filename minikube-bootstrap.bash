@@ -1,5 +1,13 @@
 #!/bin/bash
 
+jenkins_container=df9149f08bf8
+
+# Start docker
+
+docker-machine start dev
+
+docker start ${jenkins_container}
+
 # Wipe the current cluster and create a new one
 minikube stop
 
@@ -15,7 +23,7 @@ kubectl expose deployment image-recognizer-deployment --type=NodePort --port=808
 # Enamble and configure ingress
 minikube addons enable ingress
 
-#kubectl apply -f ingress.yaml
+kubectl apply -f ingress.yaml
 
 # Figure out the running docker-machine (not minikube's) which is running Jenkins
 eval $(docker-machine env dev)
@@ -35,4 +43,7 @@ docker exec -it -u 0 $jenkins_container chown -R 1000:1000 '/Users/jonas/.miniku
 # Get the cluster IP and set it in /etc/hosts to make sure clients can connect through a predicable URL
 
 minikube status
+
+minikube dashboard &
+
 
