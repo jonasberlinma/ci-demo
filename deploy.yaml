@@ -22,7 +22,7 @@ spec:
         app: image-recognizer-deployment
     spec:
       containers:
-      - image: docker.io/jonasberlin/ci-demo:131
+      - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
         imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:
