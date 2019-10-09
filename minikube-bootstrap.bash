@@ -42,6 +42,7 @@ docker exec -it -u 0 $jenkins_container chown -R 1000:1000 '/Users/jonas/.miniku
 
 # Get the cluster IP and set it in /etc/hosts to make sure clients can connect through a predicable URL
 
+# echo foo > /etc/hosts
 minikube status
 
 minikube dashboard &
