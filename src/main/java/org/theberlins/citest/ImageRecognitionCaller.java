@@ -33,7 +33,7 @@ public class ImageRecognitionCaller extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+
 		RestTemplate restTemplate = new RestTemplate();
 
 		try {
@@ -79,17 +79,7 @@ public class ImageRecognitionCaller extends Thread {
 						+ " Probability=" + res.getProbability() + " in " + (endTime - startTime) + " ms"
 						+ errorMarker);
 			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RestClientException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		} catch ( RestClientException | IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
