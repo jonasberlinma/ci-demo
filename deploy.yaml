@@ -1,7 +1,7 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
-  name: image-recognizer-deployment
+  name: image-recognizer
   namespace: default
   labels:
     app: image-recognizer
@@ -10,7 +10,7 @@ spec:
   minReadySeconds: 60
   selector:
     matchLabels:
-      app: image-recognizer-deployment
+      app: image-recognizer
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: image-recognizer-deployment
+        app: image-recognizer
     spec:
       containers:
       - image: docker.io/jonasberlin/ci-demo:${BUILD_NUMBER}
